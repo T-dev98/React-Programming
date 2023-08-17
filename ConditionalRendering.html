@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- React CDN links -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel CDN links -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>conditional Rendering</title>
+</head>
+<body>
+
+    <div id="root"></div>
+    <script type="text/babel">
+
+//component rendering based on condition
+function StudentPage(){
+    let studentDetail = [
+        {
+            name: "Alexa",
+            age: 21,
+            marks: 80
+        },
+        {
+            name: "Google",
+            age: 18,
+            marks: 70
+        },
+        {
+            name: "Siri",
+            age: 17,
+            marks: 90
+        }
+    ];
+    return(
+        <div>
+            <h1>Student Details</h1>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Marks</th>
+                </tr>
+                </thead>
+            
+            <tbody>
+                {studentDetail.map((data, key)=>
+                    <tr key={key}>
+                        <td>{data.name}</td>
+                        <td>{data.age}</td>
+                        <td>{data.marks}</td>
+                    </tr>
+                    )}
+            </tbody>
+            </table>
+        </div>
+    );
+}
+
+function CarsPage(){
+    let cars = [
+        {
+            name: "BMW",
+            average: "10kmpl",
+            speed: "150kmph"
+        },
+        {
+            name: "Audi",
+            average: "12kmpl",
+            speed: "200kmph"
+        },
+        {
+            name: "Ferrari",
+            average: "5kmpl",
+            speed: "300kmph"
+        }
+    ];
+    return(
+        <div>
+            <h1>Cars Details</h1>
+            <table border ="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Average</th>
+                        <th>Speed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {cars.map((car, key) =>
+                        <tr key={key}>
+                            <td>{car.name}</td>
+                            <td>{car.average}</td>
+                            <td>{car.speed}</td>
+                        </tr>
+                        )}
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
+function App ()  {
+    let showPage= true;
+    if(showPage){
+        return <CarsPage/>
+    }
+        return(
+            <div>
+                <StudentPage/>
+            </div>
+        );
+}
+const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+rootElement.render(<App />);
+
+</script>
+    
+</body>
+</html>
